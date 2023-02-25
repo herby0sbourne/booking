@@ -27,10 +27,16 @@ func main() {
 
 	render.NewTemplates(&app)
 
-	http.HandleFunc("/", handlers.Repo.Home)
-	http.HandleFunc("/about", handlers.Repo.About)
-
 	fmt.Println(fmt.Sprintf("server running on http://localhost%s", PORT))
-	_ = http.ListenAndServe("localhost:3001", nil)
+	// _ = http.ListenAndServe("localhost:3001", nil)
 	// _ = http.ListenAndServe(PORT, nil)
+
+	server := &http.Server{
+		Addr:    PORT,
+		Handler: routes(&app),
+	}
+
+	err = server.ListenAndServe()
+	log.Fatal(err)
+
 }
