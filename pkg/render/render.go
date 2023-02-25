@@ -6,11 +6,12 @@ import (
 	"html/template"
 	"log"
 	"myapp/pkg/config"
+	"myapp/pkg/models"
 	"net/http"
 	"path/filepath"
 )
 
-var function = template.FuncMap{}
+// var function = template.FuncMap{}
 
 var app *config.AppConfig
 
@@ -20,8 +21,12 @@ func NewTemplates(a *config.AppConfig) {
 
 }
 
+func AddDefaultData(td *models.TemplateData) *models.TemplateData {
+	return td
+}
+
 // RenderTemplate renders templates using html/template
-func RenderTemplate(w http.ResponseWriter, html string) {
+func RenderTemplate(w http.ResponseWriter, html string, td *models.TemplateData) {
 	var templateCache map[string]*template.Template
 
 	if app.UseCache {
@@ -39,7 +44,9 @@ func RenderTemplate(w http.ResponseWriter, html string) {
 
 	buf := new(bytes.Buffer)
 
-	_ = template.Execute(buf, nil)
+	td = AddDefaultData(td)
+
+	_ = template.Execute(buf, td)
 
 	//render template
 	_, err := buf.WriteTo(w)
