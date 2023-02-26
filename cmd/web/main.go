@@ -3,13 +3,13 @@ package main
 import (
 	"fmt"
 	"log"
-	"myapp/pkg/config"
-	"myapp/pkg/handlers"
-	"myapp/pkg/render"
 	"net/http"
 	"time"
 
 	"github.com/alexedwards/scs/v2"
+	"github.com/herby0sbourne/booking/pkg/config"
+	"github.com/herby0sbourne/booking/pkg/handlers"
+	"github.com/herby0sbourne/booking/pkg/render"
 )
 
 const PORT = ":3001"

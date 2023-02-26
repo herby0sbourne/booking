@@ -5,10 +5,12 @@ import (
 	"fmt"
 	"html/template"
 	"log"
-	"myapp/pkg/config"
-	"myapp/pkg/models"
+
 	"net/http"
 	"path/filepath"
+
+	"github.com/herby0sbourne/booking/pkg/config"
+	"github.com/herby0sbourne/booking/pkg/models"
 )
 
 // var function = template.FuncMap{}

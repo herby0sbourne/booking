@@ -1,10 +1,11 @@
 package handlers
 
 import (
-	"myapp/pkg/config"
-	"myapp/pkg/models"
-	"myapp/pkg/render"
 	"net/http"
+
+	"github.com/herby0sbourne/booking/pkg/config"
+	"github.com/herby0sbourne/booking/pkg/models"
+	"github.com/herby0sbourne/booking/pkg/render"
 )
 
 // Repo the repository used by the handlers
@@ -29,13 +30,19 @@ func NewHandlers(r *Repository) {
 
 // Home is the home page handler
 func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
+	remoteIp := r.RemoteAddr
+	m.App.Session.Put(r.Context(), "remoteIp", remoteIp)
+
 	render.RenderTemplate(w, "home.page.html", &models.TemplateData{})
 }
 
 // About is the home page handler
 func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
+	remoteIp := m.App.Session.GetString(r.Context(), "remoteIp")
+
 	stringMap := make(map[string]string)
 	stringMap["test"] = "Hello, again"
+	stringMap["ip"] = remoteIp
 
 	render.RenderTemplate(w, "about.page.html", &models.TemplateData{
 		StringMap: stringMap,
