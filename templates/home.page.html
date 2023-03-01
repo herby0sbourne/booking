@@ -1,12 +1,79 @@
 {{template "base" .}}
 
 {{define "content"}}
+<div class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3500" id="carousel-2"
+  style="height: 600px;">
+  <div class="carousel-inner h-100">
+    <div class="carousel-item active h-100"><img class="w-100 d-block position-absolute h-100 fit-cover"
+        src="/static/images/woman-laptop.webp" alt="woman with laptop" style="z-index: -1;">
+      <div class="container d-flex flex-column justify-content-end h-100">
+        <div class="row">
+          <div class="col-md-6 col-xl-4 offset-md-2">
+            <div style="max-width: 350px;">
+              <h1 class="text-uppercase fw-bold">First</h1>
+              <p class="my-3">first image</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item h-100">
+      <img class="w-100 d-block position-absolute h-100 fit-cover" src="/static/images/tray.webp" alt="tray with coffee"
+        style="z-index: -1;">
+      <div class="container d-flex flex-column justify-content-center h-100">
+        <div class="row">
+          <div class="col-md-6 col-xl-4 offset-md-2">
+            <div style="max-width: 350px;">
+              <h1 class="text-uppercase fw-bold">Second Slide</h1>
+              <p class="my-3">Second Slide</p>
+              <a class="btn btn-primary btn-lg me-2" role="button" href="#">Button</a>
+              <a class="btn btn-outline-primary btn-lg" role="button" href="#">Button</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item h-100"><img class="w-100 d-block position-absolute h-100 fit-cover"
+        src="/static/images/outside.webp" alt="outside" style="z-index: -1;">
+      <div class="container d-flex flex-column justify-content-center h-100">
+        <div class="row">
+          <div class="col-md-6 col-xl-4 offset-md-2">
+            <div style="max-width: 350px;">
+              <h1 class="text-uppercase fw-bold">Three</h1>
+              <p class="my-3">Threed&nbsp;</p><a class="btn btn-primary btn-lg me-2" role="button" href="#">Button</a><a
+                class="btn btn-outline-primary btn-lg" role="button" href="#">Button</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <a class="carousel-control-prev" href="#carousel-2" role="button" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"> </span>
+      <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carousel-2" role="button" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+      <span class="visually-hidden">Next</span>
+    </a>
+  </div>
+  <ol class="carousel-indicators">
+    <li data-bs-target="#carousel-2" data-bs-slide-to="0" class="active"></li>
+    <li data-bs-target="#carousel-2" data-bs-slide-to="1"></li>
+    <li data-bs-target="#carousel-2" data-bs-slide-to="2"></li>
+  </ol>
+</div>
 <div class="container">
   <div class="row">
     <div class="col">
-      <h1>Home Page</h1>
-      <p>this is some text</p>
-
+      <h1 class="text-center mt-4">Welcome to Ford's Bed and Breakfast</h1>
+      <p>Your home away from home, set in the amazon forest</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col text-center">
+      <a href="/search-availability" class="btn btn-success" role="button">Make Reservation Now</a>
     </div>
   </div>
 </div>
