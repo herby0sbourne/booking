@@ -1,0 +1,48 @@
+html {
+    overflow-x: hidden;
+}
+
+.fit-cover {
+    object-fit: cover;
+}
+
+#check-availability-form {
+    padding: 10px 30px;
+}
+
+.swal2-actions {
+    z-index: 0 !important;
+}
+
+.notie-container {
+    /*box-shadow: none;*/
+    background-color: hotpink !important;
+    z-index: 9999 !important;
+    /*top: 56px !important;*/
+    /*position: absolute;*/
+}
+
+label {
+    width: 66%;
+}
+
+.footer {
+    margin-top: 3rem;
+    height: 5rem;
+    padding: 1rem;
+    background-color: var(--bs-gray-dark);
+    color: white;
+    font-size: 80%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+@media (min-width: 992px) {
+    .room-img {
+        max-width: 50%;
+    }
+}
