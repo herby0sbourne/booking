@@ -4,7 +4,8 @@
   <div class="row mt-5">
     <div class="col">
       <h1>Search for Availability</h1>
-      <form class="needs-validation g-3" method="get" novalidate="" action="">
+      <form class="needs-validation g-3" method="POST" novalidate="" action="/search-availability">
+        <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
         <div class="row">
           <div class="col">
             <div id="reservation-dates" class="row">
