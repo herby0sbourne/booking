@@ -1,4 +1,45 @@
-{{template "base" .}}
-{{define "content"}}
-
+{{template "base" .}} {{define "content"}}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Make Reservation</h1>
+      <form class="needs-validation reservation-form" method="get" novalidate="">
+        <div class="row g-3 mt-5">
+          <div class="col-md-6 col-lg-6 offset-lg-0">
+            <div class="mb-3">
+              <label class="form-label" id="first_name">First Name:<input class="form-control form-control-user w-100"
+                  type="text" id="first_name" placeholder="first name" name="first_name" autocomplete="off"
+                  aria-describedby="start-date" required="" /></label>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-6 offset-lg-0">
+            <div class="mb-3">
+              <label class="form-label" id="last_name">Last Name:
+                <input class="form-control form-control-user" type="text" id="last_name" placeholder="last name"
+                  name="last_name" autocomplete="off" aria-describedby="start-date" required="" />
+              </label>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-6 offset-lg-0">
+            <div class="mb-3">
+              <label class="form-label" id="email">Email:<input class="form-control form-control-user" type="email"
+                  id="email" placeholder="Email Address" name="email" autocomplete="off" aria-describedby="start-date"
+                  required="" /></label>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-6 offset-lg-0">
+            <div class="mb-3">
+              <label class="form-label" id="phone">Phone Number:<input class="form-control form-control-user"
+                  type="text" id="phone" placeholder="phone number" name="phone" autocomplete="off"
+                  aria-describedby="start-date" required="" /></label>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary d-block btn-user" type="submit">
+          Search Availability&nbsp;
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
 {{end}}

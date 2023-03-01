@@ -17,8 +17,38 @@
   </div>
   <div class="row">
     <div class="col text-center">
-      <a class="btn btn-success" role="button" href="/make-reservation">Check Availability</a>
+      <a id="check-availability-btn" class="btn btn-success" role="button" href="#!">Check Availability</a>
     </div>
   </div>
 </div>
+{{end}}
+
+{{define "js"}}
+<script>
+  const checkAvailability = document.getElementById("check-availability-btn");
+
+  const createModal = () => {
+    const html = `
+            <form id="check-availability-form" class="needs-validation" method="post" novalidate>
+            <div class="row">
+                <div class="col">
+                    <div id="reservation-dates-modal" class="row">
+                        <div class="col">
+                          <label id="start" class="form-label">Start Date</label>
+                          <input id="start-modal" class="form-control" type="text" name="start" disabled required placeholder="Arrival Date" />
+                        </div>
+                        <div class="col">
+                          <label id="end" class="form-label">End Date</label>
+                          <input id="end-modal" class="form-control" type="text" name="end" disabled required placeholder="Departure Date" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+`;
+    attention.custom({ html, title: "Choose your dates" });
+  }
+
+  checkAvailability.addEventListener("click", createModal);
+</script>
 {{end}}
