@@ -18,22 +18,22 @@ let attention = Prompt();
 // let note = new Notification();
 
 (function () {
-  'use strict';
+  "use strict";
   window.addEventListener(
-    'load',
+    "load",
     function () {
       // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      let forms = document.getElementsByClassName('needs-validation');
+      let forms = document.getElementsByClassName("needs-validation");
       // Loop over them and prevent submission
       Array.prototype.filter.call(forms, function (form) {
         form.addEventListener(
-          'submit',
+          "submit",
           function (event) {
             if (form.checkValidity() === false) {
               event.preventDefault();
               event.stopPropagation();
             }
-            form.classList.add('was-validated');
+            form.classList.add("was-validated");
           },
           false
         );
@@ -42,33 +42,6 @@ let attention = Prompt();
     false
   );
 })();
-
-const elem = document.getElementById('reservation-dates');
-const rangePicker = new DateRangePicker(elem, {
-  format: 'yyyy-mm-dd',
-});
-
-document.querySelector('.hey').addEventListener('click', () => {
-  const html = `
-            <form id="check-availability-form" class="needs-validation" method="post" novalidate>
-            <div class="row">
-                <div class="col">
-                    <div id="reservation-dates-modal" class="row">
-                        <div class="col">
-                          <label id="start" class="form-label">Start Date</label>
-                          <input id="start-modal" class="form-control" type="text" name="start" disabled required placeholder="Arrival Date" />
-                        </div>
-                        <div class="col">
-                          <label id="end" class="form-label">End Date</label>
-                          <input id="end-modal" class="form-control" type="text" name="end" disabled required placeholder="Departure Date" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </form>
-`;
-  attention.custom({ html, title: ' Choose your dates' });
-});
 
 function notify(msg, msgType) {
   notie.alert({
@@ -90,7 +63,7 @@ function modal(title, text, icon, confirmButtonText) {
 
 function Prompt() {
   let toast = (options) => {
-    const { msg = '', icon = 'success', position = 'top-end' } = options;
+    const { msg = "", icon = "success", position = "top-end" } = options;
     const Toast = Swal.mixin({
       toast: true,
       title: msg,
@@ -100,8 +73,8 @@ function Prompt() {
       timer: 3000,
       timerProgressBar: true,
       didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer);
-        toast.addEventListener('mouseleave', Swal.resumeTimer);
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
       },
     });
 
@@ -109,19 +82,19 @@ function Prompt() {
   };
 
   let status = (options) => {
-    const { title = '', msg = '', icon = 'success' } = options;
+    const { title = "", msg = "", icon = "success" } = options;
 
     Swal.fire({
-      icon: icon === 'success' ? 'success' : 'error',
+      icon: icon === "success" ? "success" : "error",
       title,
       text: msg,
     });
   };
 
   async function custom(options) {
-    const { html = '', title = '' } = options;
+    const { html = "", title = "" } = options;
 
-    const { value: formValues } = await Swal.fire({
+    const { value: result } = await Swal.fire({
       title,
       html,
       focusConfirm: false,
@@ -129,27 +102,38 @@ function Prompt() {
       showCancelButton: true,
       inputAutoFocus: false,
       willOpen: () => {
-        const elem = document.getElementById('reservation-dates-modal');
-        const rangePicker = new DateRangePicker(elem, {
-          format: 'yyyy-mm-dd',
-          showOnFocus: true,
-        });
+        if (options.willOpen === undefined) return;
+        options.willOpen();
       },
       preConfirm: () => {
         return [
-          document.getElementById('start-modal').value,
-          document.getElementById('end-modal').value,
+          document.getElementById("start-modal").value,
+          document.getElementById("end-modal").value,
         ];
       },
       didOpen: () => {
-        document.getElementById('start-modal').removeAttribute('disabled');
-        document.getElementById('end-modal').removeAttribute('disabled');
+        if (options.didOpen === undefined) return;
+        options.didOpen();
       },
     });
+    // console.log(result);
+    if (result) {
+      if (result.dismiss !== Swal.DismissReason.cancel) {
+        if (result[0] === "" || result[1] === "") return;
 
-    if (formValues) {
-      Swal.fire(JSON.stringify(formValues));
+        if (options.callback !== undefined) {
+          options.callback(result);
+        } else {
+          options.callback(false);
+        }
+      } else {
+        options.callback(false);
+      }
     }
+
+    // if (formValues) {
+    //     Swal.fire(JSON.stringify(formValues));
+    // }
   }
 
   return {
