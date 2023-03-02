@@ -3,14 +3,14 @@ package render
 import (
 	"bytes"
 	"fmt"
+	"github.com/herby0sbourne/booking/internal/config"
+	"github.com/herby0sbourne/booking/internal/models"
 	"html/template"
 	"log"
 
 	"net/http"
 	"path/filepath"
 
-	"github.com/herby0sbourne/booking/pkg/config"
-	"github.com/herby0sbourne/booking/pkg/models"
 	"github.com/justinas/nosurf"
 )
 
