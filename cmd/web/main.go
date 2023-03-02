@@ -2,14 +2,14 @@ package main
 
 import (
 	"fmt"
+	"github.com/herby0sbourne/booking/internal/config"
+	"github.com/herby0sbourne/booking/internal/handlers"
+	"github.com/herby0sbourne/booking/internal/render"
 	"log"
 	"net/http"
 	"time"
 
 	"github.com/alexedwards/scs/v2"
-	"github.com/herby0sbourne/booking/pkg/config"
-	"github.com/herby0sbourne/booking/pkg/handlers"
-	"github.com/herby0sbourne/booking/pkg/render"
 )
 
 const PORT = ":3001"
