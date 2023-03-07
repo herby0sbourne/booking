@@ -1,45 +1,62 @@
 {{template "base" .}} {{define "content"}}
 <div class="container">
-  <div class="row">
-    <div class="col">
-      <h1>Make Reservation</h1>
-      <form class="needs-validation reservation-form" method="get" novalidate="">
-        <div class="row g-3 mt-5">
-          <div class="col-md-6 col-lg-6 offset-lg-0">
-            <div class="mb-3">
-              <label class="form-label" id="first_name">First Name:<input class="form-control form-control-user w-100"
-                  type="text" id="first_name" placeholder="first name" name="first_name" autocomplete="off"
-                  aria-describedby="start-date" required="" /></label>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-6 offset-lg-0">
-            <div class="mb-3">
-              <label class="form-label" id="last_name">Last Name:
-                <input class="form-control form-control-user" type="text" id="last_name" placeholder="last name"
-                  name="last_name" autocomplete="off" aria-describedby="start-date" required="" />
-              </label>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-6 offset-lg-0">
-            <div class="mb-3">
-              <label class="form-label" id="email">Email:<input class="form-control form-control-user" type="email"
-                  id="email" placeholder="Email Address" name="email" autocomplete="off" aria-describedby="start-date"
-                  required="" /></label>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-6 offset-lg-0">
-            <div class="mb-3">
-              <label class="form-label" id="phone">Phone Number:<input class="form-control form-control-user"
-                  type="text" id="phone" placeholder="phone number" name="phone" autocomplete="off"
-                  aria-describedby="start-date" required="" /></label>
-            </div>
-          </div>
+    <div class="row">
+        <div class="col">
+            <h1>Make Reservation</h1>
+            <!-- needs-validation -->
+            {{$res := index .Data "reservation"}}
+            <form class="reservation-form" method="POST" novalidate="" action="/make-reservation">
+                <input type="hidden" name="csrf_token" value="{{.CSRFToken}}" />
+                <div class="row g-3 mt-5">
+                    <div class="col-md-6 col-lg-6 offset-lg-0">
+                        <div class="mb-3">
+                            <label class="form-label" id="first_name"
+                                >First Name: <input class="form-control w-100 {{with .Form.Errors.Get "first_name"}}
+                                is-invalid {{end}}" type="text" id="first_name" value="{{$res.FirstName}}"
+                                placeholder="first name" name="first_name" autocomplete="off" required="" />
+                            </label>
+                            {{with .Form.Errors.Get "first_name"}}
+                            <div class="text-danger">{{.}}</div>
+                            {{end}}
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 offset-lg-0">
+                        <div class="mb-3">
+                            <label class="form-label" id="last_name"
+                                >Last Name: <input class="form-control {{with .Form.Errors.Get "last_name"}} is-invalid
+                                {{end}}" type="text" id="last_name" value="{{$res.LastName}}" placeholder="last name"
+                                name="last_name" autocomplete="off" required="" /> </label
+                            >{{with .Form.Errors.Get "last_name"}}
+                            <div class="text-danger">{{.}}</div>
+                            {{end}}
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 offset-lg-0">
+                        <div class="mb-3">
+                            <label class="form-label" id="email"
+                                >Email: <input class="form-control {{with .Form.Errors.Get "email"}} is-invalid
+                                {{end}}" type="email" id="email" placeholder="Email Address" value="{{$res.Email}}"
+                                name="email" autocomplete="off" required="" /></label
+                            >{{with .Form.Errors.Get "email"}}
+                            <div class="text-danger">{{.}}</div>
+                            {{end}}
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 offset-lg-0">
+                        <div class="mb-3">
+                            <label class="form-label" id="phone"
+                                >Phone Number: <input class="form-control {{with .Form.Errors.Get "phone"}}
+                                is-invalid {{end}}" type="text" id="phone" placeholder="phone number" name="phone"
+                                value="{{$res.Phone}}" autocomplete="off" required="" /> </label
+                            >{{with .Form.Errors.Get "phone"}}
+                            <div class="text-danger">{{.}}</div>
+                            {{end}}
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary d-block btn-user" type="submit">Search Availability&nbsp;</button>
+            </form>
         </div>
-        <button class="btn btn-primary d-block btn-user" type="submit">
-          Search Availability&nbsp;
-        </button>
-      </form>
     </div>
-  </div>
 </div>
 {{end}}
